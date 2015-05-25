@@ -52,11 +52,17 @@ class BalbuzardPlugin(PluginBase):
 
     def __init__(self):
         module = sys.modules['balbuzard.balbuzard']
+        patterns = module.patterns
+        self.Analyzer = module.Balbuzard(patterns=patterns)
         return
 
-    @classmethod
-    def verify(cls):
-        pass
+    def analyze(self, filename):
+        res = {}
+        with open(filename, "rb") as f:
+            data = f.read()
+        for (match_pattern, matches) in self.Analyzer.scan(data):
+            res[match_pattern.name] = matches
+        return res
 
     # ==================
     #  probe interfaces
@@ -67,7 +73,7 @@ class BalbuzardPlugin(PluginBase):
                                 version=None)
         try:
             started = timestamp(datetime.utcnow())
-            response.results = "Main analysis call here"
+            response.results = self.analyze(paths)
             stopped = timestamp(datetime.utcnow())
             response.duration = stopped - started
             response.status = self.BalbuzardResult.SUCCESS

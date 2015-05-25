@@ -22,21 +22,20 @@ from lib.irma.common.utils import IrmaProbeType
 from lib.plugins.exceptions import PluginLoadError
 
 
-class SkeletonPlugin(PluginBase):
+class BalbuzardPlugin(PluginBase):
 
-    class SkeletonResult:
+    class BalbuzardResult:
         ERROR = -1
-        FAILURE = 0
         SUCCESS = 1
 
     # =================
     #  plugin metadata
     # =================
-    _plugin_name_ = "Skeleton"
-    _plugin_author_ = "<author name>"
-    _plugin_version_ = "<version>"
-    _plugin_category_ = "custom"
-    _plugin_description_ = "Plugin skeleton"
+    _plugin_name_ = "Balbuzard"
+    _plugin_author_ = "Your Name Here"
+    _plugin_version_ = "0.1"
+    _plugin_category_ = "metadata"
+    _plugin_description_ = "extract metadata from file thanks to balbuzard"
     _plugin_dependencies_ = []
 
     # =============
@@ -48,7 +47,7 @@ class SkeletonPlugin(PluginBase):
 
     @classmethod
     def verify(cls):
-        raise PluginLoadError("Skeleton plugin is not meant to be loaded")
+        pass
 
     # ==================
     #  probe interfaces
@@ -62,8 +61,8 @@ class SkeletonPlugin(PluginBase):
             response.results = "Main analysis call here"
             stopped = timestamp(datetime.utcnow())
             response.duration = stopped - started
-            response.status = self.SkeletonResult.SUCCESS
+            response.status = self.BalbuzardResult.SUCCESS
         except Exception as e:
-            response.status = self.SkeletonResult.ERROR
+            response.status = self.BalbuzardResult.ERROR
             response.results = str(e)
         return response

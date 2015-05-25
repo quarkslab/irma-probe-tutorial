@@ -13,13 +13,14 @@
 # modified, propagated, or distributed except according to the
 # terms contained in the LICENSE file.
 
+import sys
 from datetime import datetime
 
 from lib.common.utils import timestamp
 from lib.plugins import PluginBase
 from lib.plugin_result import PluginResult
 from lib.irma.common.utils import IrmaProbeType
-from lib.plugins.exceptions import PluginLoadError
+from lib.plugins import ModuleDependency
 
 
 class BalbuzardPlugin(PluginBase):
@@ -36,14 +37,22 @@ class BalbuzardPlugin(PluginBase):
     _plugin_version_ = "0.1"
     _plugin_category_ = "metadata"
     _plugin_description_ = "extract metadata from file thanks to balbuzard"
-    _plugin_dependencies_ = []
+    _plugin_dependencies_ = [
+        ModuleDependency(
+            'balbuzard',
+            help='See requirements.txt for needed dependencies'
+        ),
+        ModuleDependency(
+            'balbuzard.balbuzard',
+        ), ]
 
     # =============
     #  constructor
     # =============
 
     def __init__(self):
-        pass
+        module = sys.modules['balbuzard.balbuzard']
+        return
 
     @classmethod
     def verify(cls):

@@ -8,20 +8,19 @@ The probe creation process is splitted in 4 parts, each part is in a specific br
 ## Level 0
 (Your start point)(branch balbuzard-level0)
 
-to finish level 0 your goal is to copy skeleton files in your new probe directory
+your goal is to copy skeleton files in your new probe directory.
 
 ## Level 1
 (branch balbuzard-level1)
 
-level 1 consists in replacing Skeleton names by your new probe names, and also fill metadata like
-Author, Version ...
+level 1 consist in replacing Skeleton names by your new custom probe name, and also fill metadata (Author, Version...)
 
 ## Level 2
 (branch balbuzard-level2)
 
-level2 consists in handling module dependencies and returning a simple result.
+level 2 consist in handling module dependencies.
 
 ## Level 3
 (branch balbuzard-level3)
 
-level3 add a specific method for the analysis.
+level3 return a real result. Probe done!
